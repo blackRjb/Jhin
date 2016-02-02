@@ -82,7 +82,7 @@ for i,enemy in pairs(GetEnemyHeroes()) do
  -----COMBO
  local function Combo 
  	
-OnTick(function(myHero))
+OnTick(function(myHero)
 
   target = GetCurrentTarget
 
@@ -123,20 +123,10 @@ OnTick(function(myHero))
    end
 
 
-
- 
- -----KSECURE
-  local function KSecure
-   
-  if IsReady(_Q) and ValidTarget(enemy, 550) and JhinMenu.KSecure.Q:Value() and GetHP2(enemy) < getdmg("Q",enemy,myHero,3) then
-	CastTargetSpell(Target_Q,enemy)
-	elseif IsReady(_W) and ValidTarget(enemy, 3000) and JhinMenu.KSecure.W:Value() and GetHP2(enemy) < getdmg("W",enemy) then 
-	CastSkillShot(_W,enemy)
-	elseif IsReady(_E) and ValidTarget(enemy, 750) and JhinMenu.KSecure.E:Value() and GetHP2(enemy) < getdmg("E",enemy) then
-	CastSkillShot(_E,enemy)
-  end
-
 end)
+ 
+ -----KSECURE--> soon
+ 
 
 PrintChat(string.format("<font color='#1244EA'>Jhin:</font> <font color='#FFFFFF'> By BlackRjb Loaded, Have A Good Game ! </font>")) 
  
