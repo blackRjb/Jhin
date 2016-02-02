@@ -3,7 +3,7 @@ if GetObjectName(GetMyHero()) ~= "Jhin" then return end
 require('Inspired')
 require('DeftLib')
 
-local JhinMenu = MenuConfig("Jhin", "jhin")
+local JhinMenu = MenuConfig("Jhin", "Jhin")
 
 JhinMenu:Menu("Combo", "Combo")
 JhinMenu.Combo:Boolean("Q", "Use Q", true)
@@ -19,7 +19,7 @@ JhinMenu.Harass:Slider("Mana", "if mana >", 30, 0, 75, 1)
 
 JhinMenu:Menu("Ksecure", "Ksecure")
 JhinMenu.Ksecure:Boolean("Q", "Use Q", true)
-jhinMenu.Ksecure:Boolean("W", "Use W", true)
+JhinMenu.Ksecure:Boolean("W", "Use W", true)
 JhinMenu.Ksecure:Boolean("E", "Use E", false)
 JhinMenu.Ksecure:Boolean("R", "Use R", true)
 
@@ -31,35 +31,43 @@ JhinMenu.Drawings:Boolean("R", "Draw R Range", true)
 JhinMenu.Drawings:Boolean("DrawDMG", "Draw Damage", true)
 
 JhinMenu:Menu("Misc", "Misc")
+JhinMenu.Misc:Boolean("AutoHeal", "Use F AutoHeal", true)
 if Ignite ~= nil then JhinMenu.Misc:Boolean("AutoIgnite", "Auto Ignite", True) end
 
 ------Drawing range and damage
 OnDraw(function(myHero)
 local pos = GetOrigin(myHero)
 
-if JhinMenu.Drawings.Q:Value() then DrawCircle(pos,1150,1,25,GoS.Pink) end
-if JhinMenu.Drawings.W:Value() then DrawCircle(pos,1000,1,25,GoS.Blue) end
-if JhinMenu.Drawings.R:Value() then DrawCircle(pos,1450,1,25,GoS.Green) end
+if JhinMenu.Drawings.Q:Value() then 
+ DrawCircle(pos,1150,1,25,GoS.Pink) 
+end
+
+if JhinMenu.Drawings.W:Value() then 
+ DrawCircle(pos,1000,1,25,GoS.Blue) 
+end
+
+if JhinMenu.Drawings.R:Value() then 
+ DrawCircle(pos,1450,1,25,GoS.Green) 
+end
 
 if mainMenu.Drawings.DrawDMG:Value() then
 local target = GetCurrentTarget()
 	if CanUseSpell(myHero_Q)== READY then 
 	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
-	  end
+	end
 	if CanUseSpell(myHero_W)== READT then
 	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
-	  end
+	end
 	if CanUseSpell(myHero_E)== READY then
 	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
-	  end
+	end
         if CanUseSpell(myHero_R)== READY then
           DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
-          end
+        end
 end
 
 end)
 
-----
 	  
 
   
