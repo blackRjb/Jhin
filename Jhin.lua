@@ -82,7 +82,7 @@ for i,enemy in pairs(GetEnemyHeroes()) do
  -----COMBO
  local function Combo 
  	
-OnTick(function(myHero)
+OnTick(function(myHero))
 
   target = GetCurrentTarget
 
