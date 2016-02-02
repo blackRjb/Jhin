@@ -28,6 +28,7 @@ JhinMenu.Drawings:Boolean("Q", "Draw Q Range", true)
 JhinMenu.Drawings:Boolean("W", "Draw W Range", true)
 JhinMenu.Drawings:Boolean("E", "Draw E Range", false)
 JhinMenu.Drawings:Boolean("R", "Draw R Range", true)
+JhinMenu.Drawings:Boolean("DrawDmg", "Draw Damage", true)
 
 JhinMenu:Menu("Misc", "Misc")
 JhinMenu.Misc:Boolean("AutoHeal", "Use F AutoHeal", true)
