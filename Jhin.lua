@@ -26,12 +26,31 @@ JhinMenu.Ksecure:Boolean("R", "Use R", true)
 JhinMenu:Menu("Drawings", "Drawings")
 JhinMenu.Drawings:Boolean("Q", "Draw Q Range", true)
 JhinMenu.Drawings:Boolean("W", "Draw W Range", true)
-JhinMenu.Drawings:Boolean("E", "Draw E Range", true)
-JhinMenu.Drawings:Boolean("R", "Draw R Range", false)
-JhinMenu.Drawings:Boolean("Q", "Draw Q% Dmg", true)
-JhinMenu.Drawings:Boolean("W", "Draw W% Dmg", true)
-JhinMenu.Drawings:Boolean("E", "Draw E% Dmg", false)
-JhinMenu.Drawings:Boolean("R", "Draw R% Dmg", true)
+JhinMenu.Drawings:Boolean("E", "Draw E Range", false)
+JhinMenu.Drawings:Boolean("R", "Draw R Range", true)
+JhinMenu.Drawings:Boolean("DrawDMG", "Draw Damage", true)
 
-JhinMenu:Menu("Misc", "Misc"
+JhinMenu:Menu("Misc", "Misc")
 if Ignite ~= nil then JhinMenu.Misc:Boolean("AutoIgnite", "Auto Ignite", True) end
+
+------Drawing range and damage
+OnDraw(function(myHero)
+local pos = GetOrigin(myHero)
+
+if JhinMenu.Drawings.Q:Value() then DrawCircle(pos,1150,1,25,GoS.Pink) end
+if JhinMenu.Drawings.W:Value() then DrawCircle(pos,1000,1,25,GoS.Blue) end
+if JhinMenu.Drawings.R:Value() then DrawCircle(pos,1450,1,25,GoS.Green) end
+
+if mainMenu.Drawings.DrawDMG:Value() then
+local target = GetCurrentTarget()
+	if CanUseSpell(myHeroQWER)== READY then 
+	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
+  end
+end
+
+end)
+
+----
+	  
+
+  
