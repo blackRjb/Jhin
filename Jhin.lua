@@ -28,7 +28,6 @@ JhinMenu.Drawings:Boolean("Q", "Draw Q Range", true)
 JhinMenu.Drawings:Boolean("W", "Draw W Range", true)
 JhinMenu.Drawings:Boolean("E", "Draw E Range", false)
 JhinMenu.Drawings:Boolean("R", "Draw R Range", true)
-JhinMenu.Drawings:Boolean("DrawDMG", "Draw Damage", true)
 
 JhinMenu:Menu("Misc", "Misc")
 JhinMenu.Misc:Boolean("AutoHeal", "Use F AutoHeal", true)
@@ -52,16 +51,16 @@ end
 
 if JhinMenu.Drawings.DrawDMG:Value() then
 local target = GetCurrentTarget()
-	if CanUseSpell(Q)== READY then 
+	if CanUseSpell("Q")== READY then 
 	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
 	end
-	if CanUseSpell(W)== READT then
+	if CanUseSpell("W")== READT then
 	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
 	end
-	if CanUseSpell(E)== READY then
+	if CanUseSpell("E")== READY then
 	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
 	end
-        if CanUseSpell(R)== READY then
+        if CanUseSpell("R")== READY then
           DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
         end
 end
