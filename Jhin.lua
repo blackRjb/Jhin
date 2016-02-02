@@ -55,7 +55,7 @@ local target = GetCurrentTarget()
 	if CanUseSpell("Q")== READY then 
 	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
 	end
-	if CanUseSpell("W")== READT then
+	if CanUseSpell("W")== READY then
 	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
 	end
 	if CanUseSpell("E")== READY then
@@ -82,7 +82,7 @@ for i,enemy in pairs(GetEnemyHeroes()) do
  -----COMBO
 OnTick(function(myHero)
  local function combo
-  target = GetCurrentTarget
+  target = GetCurrentTarget()
 
   local function CastW(target)
 	local Pred = GetPredictionForPlayer(GetOrigin(myHero),unit,GetMoveSpeed(unit),3000,999999,WRange,100,true,true)
