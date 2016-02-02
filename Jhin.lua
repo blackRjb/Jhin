@@ -52,16 +52,16 @@ end
 
 if JhinMenu.Drawings.DrawDMG:Value() then
 local target = GetCurrentTarget()
-	if CanUseSpell(myHero_Q)== READY then 
+	if CanUseSpell(Q)== READY then 
 	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
 	end
-	if CanUseSpell(myHero_W)== READT then
+	if CanUseSpell(W)== READT then
 	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
 	end
-	if CanUseSpell(myHero_E)== READY then
+	if CanUseSpell(E)== READY then
 	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
 	end
-        if CanUseSpell(myHero_R)== READY then
+        if CanUseSpell(R)== READY then
           DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
         end
 end
