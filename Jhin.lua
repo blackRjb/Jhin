@@ -50,7 +50,7 @@ if JhinMenu.Drawings.R:Value() then
  DrawCircle(pos,1450,1,25,GoS.Green) 
 end
 
-if JhinMenu.Drawings.DrawDMG:Value() then
+if JhinMenu.Drawings.DrawDmg:Value() then
 local target = GetCurrentTarget()
 	if CanUseSpell("Q")== READY then 
 	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
