@@ -80,10 +80,8 @@ for i,enemy in pairs(GetEnemyHeroes()) do
 
 ----->Auto Heal Soon
  -----COMBO
- local function Combo 
- 	
 OnTick(function(myHero)
-
+ local function combo
   target = GetCurrentTarget
 
   local function CastW(target)
