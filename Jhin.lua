@@ -81,17 +81,17 @@ for i,enemy in pairs(GetEnemyHeroes()) do
 ----->Auto Heal Soon
  -----COMBO
 OnTick(function(myHero)
- Target= GetCurrentTarget()
+ Target= GetCurrentTarget(unit)
   local function combo
   
-  local function CastW(target)
+  local function CastW(unit)
 	local Pred = GetPredictionForPlayer(GetOrigin(myHero),unit,GetMoveSpeed(unit),3000,999999,WRange,100,true,true)
      if WPred.HitChance == 1 then                
         CastSkillShot(_W,WPred.PredPos)
     end
   end
 
-  local function CastE(target)
+  local function CastE(unit)
 	local Pred = GetPredictionForPlayer(GetOrigin(myHero),unit,GetMoveSpeed(unit),750,999999,ERange,100,true,true)
    if EPred.Hitchance == 1 then
    	CastSkillShot(_E,EPred.PredPos)
