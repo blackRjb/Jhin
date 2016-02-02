@@ -82,7 +82,7 @@ for i,enemy in pairs(GetEnemyHeroes()) do
  -----COMBO
 OnTick(function(myHero)
  local function combo
-  target = GetCurrentTarget()
+  TargetSelector = GetCurrentTarget()
 
   local function CastW(target)
 	local Pred = GetPredictionForPlayer(GetOrigin(myHero),unit,GetMoveSpeed(unit),3000,999999,WRange,100,true,true)
