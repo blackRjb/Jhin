@@ -83,9 +83,10 @@ for i,enemy in pairs(GetEnemyHeroes()) do
 OnTick(function(myHero)
  Target= GetCurrentTarget()
   local function combo
+  
   local function CastW(target)
 	local Pred = GetPredictionForPlayer(GetOrigin(myHero),unit,GetMoveSpeed(unit),3000,999999,WRange,100,true,true)
-     f WPred.HitChance == 1 then                
+     if WPred.HitChance == 1 then                
         CastSkillShot(_W,WPred.PredPos)
     end
   end
