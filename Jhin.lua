@@ -30,9 +30,11 @@ JhinMenu.Drawings:Boolean("E", "Draw E Range", false)
 JhinMenu.Drawings:Boolean("R", "Draw R Range", true)
 JhinMenu.Drawings:Boolean("DrawDmg", "Draw Damage", true)
 
+if Ignite ~= nil then
 JhinMenu:Menu("Misc", "Misc")
-JhinMenu.Misc:Boolean("AutoHeal", "Use F AutoHeal", true)
-if Ignite ~= nil then JhinMenu.Misc:Boolean("AutoIgnite", "Auto Ignite", True) end
+JhinMenu.Misc:Boolean("AutoIgnite", "Auto Ignite", true) 
+JhinMenu.Misc:Boolean("AutoHeal", "Auto Heal", true)
+end
 
 ------Drawing range and damage
 OnDraw(function(myHero)
@@ -68,6 +70,39 @@ end
 
 end)
 
-	  
+----MISC IGNITE
 
-  
+for i,enemy in pairs(GetEnemyHeroes()) do
+   	
+        if Ignite and JhinMenu.Misc.AutoIgnite:Value() then
+          if IsReady(Ignite) and 20*GetLevel(myHero)+50 > GetCurrentHP(enemy)+GetDmgShield(enemy)+GetHPRegen(enemy)*3 and ValidTarget(enemy, 600) then
+          CastTargetSpell(enemy, Ignite)
+          end
+        end
+
+----->Auto Heal Soon
+ -----COMBO
+ 
+ OnTick(function(myHero)
+    local target = GetCurrentTarget()
+    local Qtarget = target1:Gettarget()
+    local Wtarget = target2:GetTarget()
+    local Etarget = target3:GetTarget()
+    local Rtarget = target4:GetTarget()
+    
+if IsReady(_Q) and QReady and ValidTarget(target, 600) and AsheMenu.Combo.Q:Value() then
+ CastSpell(_Q,Qtarget)
+end
+						
+if IsReady(_W) and WReady and ValidTarget(target, 600) and JhinMenu.Combo.W:Value() then
+ Cast(_W,Wtarget)
+end
+						
+if IsReady(_E) and EReady and ValidTarget(target, 2000) and GetPercentHP(Rtarget) <= 50 and AsheMenu.Combo.R:Value() then
+ Cast(_E,Etarget)
+end
+
+end)
+
+ -----HARASS
+ -----KSECURE
