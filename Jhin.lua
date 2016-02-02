@@ -14,14 +14,12 @@ JhinMenu.Combo:Slider("Mana", "If Mana % >", 30, 0, 75, 1)
 JhinMenu:Menu("Harass", "Harass")
 JhinMenu.Harass:Boolean("Q", "Use Q", true)
 JhinMenu.Harass:Boolean("W", "Use W", true)
-JhinMenu.Harass:Boolean("E", "Use E", False)
 JhinMenu.Harass:Slider("Mana", "if mana >", 30, 0, 75, 1)
 
 JhinMenu:Menu("Ksecure", "Ksecure")
 JhinMenu.Ksecure:Boolean("Q", "Use Q", true)
 JhinMenu.Ksecure:Boolean("W", "Use W", true)
 JhinMenu.Ksecure:Boolean("E", "Use E", false)
-JhinMenu.Ksecure:Boolean("R", "Use R", true)
 
 JhinMenu:Menu("Drawings", "Drawings")
 JhinMenu.Drawings:Boolean("Q", "Draw Q Range", true)
@@ -82,27 +80,63 @@ for i,enemy in pairs(GetEnemyHeroes()) do
 
 ----->Auto Heal Soon
  -----COMBO
+ local function Combo 
+ 	
+OnTick(function(myHero)
+
+  target = GetCurrentTarget
+
+  local function CastW(target)
+	local Pred = GetPredictionForPlayer(GetOrigin(myHero),unit,GetMoveSpeed(unit),3000,999999,WRange,100,true,true)
+    if WPred.HitChance == 1 then                
+        CastSkillShot(_W,WPred.PredPos)
+    end
+  end
+
+  local function CastE(target)
+	local Pred = GetPredictionForPlayer(GetOrigin(myHero),unit,GetMoveSpeed(unit),750,999999,ERange,100,true,true)
+   if EPred.Hitchance == 1 then
+   	CastSkillShot(_E,EPred.PredPos)
+   end
+  end
+
+   if IsReady(_Q) and QReady and ValidTarget(target, 550) and JhinMenu.Combo.Q:Value() then
+        CastTargetSpell(target,_Q)
+   end
+
+
+ -----HARASS
+  local function Harass
+
+  local target = GetCurrentTarget
  
- OnTick(function(myHero)
-    local target = GetCurrentTarget()
-    local Qtarget = target1:Gettarget()
-    local Wtarget = target2:GetTarget()
-    local Etarget = target3:GetTarget()
-    local Rtarget = target4:GetTarget()
-    
-if IsReady(_Q) and QReady and ValidTarget(target, 600) and AsheMenu.Combo.Q:Value() then
- CastSpell(_Q,Qtarget)
-end
-						
-if IsReady(_W) and WReady and ValidTarget(target, 600) and JhinMenu.Combo.W:Value() then
- Cast(_W,Wtarget)
-end
-						
-if IsReady(_E) and EReady and ValidTarget(target, 2000) and GetPercentHP(Rtarget) <= 50 and AsheMenu.Combo.R:Value() then
- Cast(_E,Etarget)
-end
+   if IsReady(_Q) and QReady and ValidTarget(target, 550) and JhinMenu.Combo.Q:Value() then
+     CastTargetSpell(target,_Q)
+   end
+
+   if IsReady(_W) and WReady and ValidTarget(target, 3000) and JhinMenu.Combo.W:Value() and WPred.HitChance == 1 then  
+	CastSkillShot(_W,WPred.PredPos)
+   end
+
+   if IsReady(_E) and EReady and ValidTarget(target, 750) and JhinMenu.Combo.W:Value() and  EPred.HitChance == 1 then
+	CastSkillShot(_E,EPred.PredPos)
+   end
+
+
+
+ 
+ -----KSECURE
+  local function KSecure
+   
+  if IsReady(_Q) and ValidTarget(enemy, 550) and JhinMenu.KSecure.Q:Value() and GetHP2(enemy) < getdmg("Q",enemy,myHero,3) then
+	CastTargetSpell(Target_Q,enemy)
+	elseif IsReady(_W) and ValidTarget(enemy, 3000) and JhinMenu.KSecure.W:Value() and GetHP2(enemy) < getdmg("W",enemy) then 
+	CastSkillShot(_W,enemy)
+	elseif IsReady(_E) and ValidTarget(enemy, 750) and JhinMenu.KSecure.E:Value() and GetHP2(enemy) < getdmg("E",enemy) then
+	CastSkillShot(_E,enemy)
+  end
 
 end)
 
- -----HARASS
- -----KSECURE
+PrintChat(string.format("<font color='#1244EA'>Jhin:</font> <font color='#FFFFFF'> By BlackRjb Loaded, Have A Good Game ! </font>")) 
+ 
