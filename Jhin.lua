@@ -43,9 +43,18 @@ if JhinMenu.Drawings.R:Value() then DrawCircle(pos,1450,1,25,GoS.Green) end
 
 if mainMenu.Drawings.DrawDMG:Value() then
 local target = GetCurrentTarget()
-	if CanUseSpell(myHeroQWER)== READY then 
+	if CanUseSpell(myHero_Q)== READY then 
 	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
-  end
+	  end
+	if CanUseSpell(myHero_W)== READT then
+	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
+	  end
+	if CanUseSpell(myHero_E)== READY then
+	  DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
+	  end
+        if CanUseSpell(myHero_R)== READY then
+          DrawDmgOverHpBar(target,GetCurrentHP(target),DPS,0,0xff00ff00)
+          end
 end
 
 end)
